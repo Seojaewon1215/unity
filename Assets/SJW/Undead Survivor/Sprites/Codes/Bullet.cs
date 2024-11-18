@@ -33,11 +33,11 @@ public class Bullet : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
     }
-    
+
 
     void Update()
     {
-        /// 플레이어의 이동 속도 가져오기 (Rigidbody를 사용하는 경우)
+        /*/// 플레이어의 이동 속도 가져오기 (Rigidbody를 사용하는 경우)
         float horizontalSpeed = player.GetComponent<Rigidbody2D>().velocity.x;
 
         // 플레이어의 이동 방향 판단
@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // 무기 오브젝트 회전
-        transform.rotation = Quaternion.Euler(0, 0, angle+ang);
+        transform.rotation = Quaternion.Euler(0, 0, angle+ang);*/
     }
     /*if (Input.GetKeyDown(key)) // 지정한 키가 눌리면
     {
