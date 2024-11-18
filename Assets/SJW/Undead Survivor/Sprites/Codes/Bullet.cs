@@ -33,14 +33,7 @@ public class Bullet : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
     }
-    public void Init(float damage, int per)
-    {
-        this.damage = damage;
-        this.per = per;
-
-        
-    }
-
+    
 
     void Update()
     {
