@@ -8,6 +8,12 @@ public class Bullet : MonoBehaviour
     public float damage;
     public int per;
 
+    public void Init(float damage, int per)
+    {
+        this.damage = damage;
+        this.per = per;
+    }
+
     public Animator animator; // 애니메이션 컨트롤러
     public KeyCode key = KeyCode.Space; // 실행할 키
     private bool isAttacking = false;
