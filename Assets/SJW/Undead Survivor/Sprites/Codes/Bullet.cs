@@ -8,10 +8,43 @@ public class Bullet : MonoBehaviour
     public float damage;
     public int per;
 
-    public void Init(float damage, int per)
+    Rigidbody2D rigid;
+
+    
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
+        spriter = GetComponent<SpriteRenderer>();
+    }
+
+    public void Init(float damage, int per, Vector3 dir)
     {
         this.damage = damage;
         this.per = per;
+
+        if(per > -1)
+        {
+            rigid.velocity = dir * 15f;
+        }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!collision.CompareTag("Enemy") || per == -1 )
+        {
+            return;
+        }
+
+        per--;
+
+        if(per == -1 )
+        {
+            rigid.velocity = Vector2.zero;
+            gameObject.SetActive(false);
+        }
+
     }
 
     public Animator animator; // 애니메이션 컨트롤러
@@ -21,21 +54,15 @@ public class Bullet : MonoBehaviour
     public Transform player; // 플레이어 오브젝트
     public float dis = 1f; // 플레이어와 무기 사이의 거리
 
-    Rigidbody2D rigid;
+    
     SpriteRenderer spriter;
 
     public Camera mainCamera; // 메인 카메라
     public float ang;
 
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
-        spriter = GetComponent<SpriteRenderer>();
-    }
 
 
-    void Update()
+    void Update()// 추가개조하려다만 코드들
     {
         /*/// 플레이어의 이동 속도 가져오기 (Rigidbody를 사용하는 경우)
         float horizontalSpeed = player.GetComponent<Rigidbody2D>().velocity.x;
