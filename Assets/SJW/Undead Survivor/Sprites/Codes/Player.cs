@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -35,6 +36,21 @@ public class Player : MonoBehaviour
         anim.SetFloat("Speed", inputVec.magnitude);
         anim.SetFloat("Horizontal", inputVec.x);
         anim.SetFloat("Vertical", inputVec.y);
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            // 디버깅 로그 추가: 현재 씬 확인
+            Debug.Log($"현재 씬: {currentScene}");
+
+            if (currentScene != "Top_down")
+            {
+                Debug.Log("Top_down 씬으로 이동합니다.");
+                SceneManager.LoadScene("Top_down");
+            }
+            
+        }
     }
     void Start()
     {
